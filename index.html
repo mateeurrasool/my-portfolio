@@ -1,0 +1,1745 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Matee Ur Rasool | Electronic Engineer & Developer</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #2563eb;
+            --primary-light: #3b82f6;
+            --primary-dark: #1d4ed8;
+            --secondary-color: #10b981;
+            --dark-color: #1e293b;
+            --dark-gray: #334155;
+            --medium-gray: #64748b;
+            --light-gray: #e2e8f0;
+            --lighter-gray: #f1f5f9;
+            --white: #ffffff;
+            --black: #000000;
+            --transition: all 0.3s ease;
+            --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.1);
+            --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.1);
+            --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.1);
+            --shadow-xl: 0 20px 25px rgba(0, 0, 0, 0.1);
+            --border-radius: 8px;
+            --border-radius-lg: 12px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            font-size: 16px;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.6;
+            color: var(--dark-color);
+            background-color: var(--white);
+            overflow-x: hidden;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+
+        section {
+            padding: 6rem 0;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            line-height: 1.2;
+            font-weight: 600;
+            color: var(--dark-color);
+        }
+
+        h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        h3 {
+            font-size: 1.75rem;
+            margin-bottom: 1rem;
+        }
+
+        h4 {
+            font-size: 1.25rem;
+            margin-bottom: 0.75rem;
+        }
+
+        p {
+            margin-bottom: 1.5rem;
+            color: var(--medium-gray);
+            font-weight: 400;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: var(--transition);
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 0.75rem 1.75rem;
+            border-radius: var(--border-radius);
+            font-weight: 500;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: var(--transition);
+            text-align: center;
+            border: none;
+        }
+
+        .btn-primary {
+            background-color: var(--primary-color);
+            color: var(--white);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .btn-primary:hover {
+            background-color: var(--primary-dark);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .btn-secondary {
+            background-color: transparent;
+            color: var(--primary-color);
+            border: 1px solid var(--primary-color);
+        }
+
+        .btn-secondary:hover {
+            background-color: var(--primary-color);
+            color: var(--white);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 4rem;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -1rem;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background-color: var(--primary-color);
+            border-radius: 2px;
+        }
+
+        /* Header Styles */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            background-color: rgba(255, 255, 255, 0.95);
+            box-shadow: var(--shadow-sm);
+            transition: var(--transition);
+        }
+
+        header.scrolled {
+            background-color: rgba(255, 255, 255, 0.98);
+            box-shadow: var(--shadow-md);
+            padding: 0.5rem 0;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem 0;
+            transition: var(--transition);
+        }
+
+        .logo {
+            font-size: 1.75rem;
+            font-weight: 700;
+            color: var(--primary-color);
+        }
+
+        .logo span {
+            color: var(--secondary-color);
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            font-weight: 500;
+            position: relative;
+            color: var(--dark-gray);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--primary-color);
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-color);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .hamburger {
+            display: none;
+            cursor: pointer;
+            z-index: 1001;
+        }
+
+        .hamburger .line {
+            width: 25px;
+            height: 3px;
+            background-color: var(--dark-color);
+            margin: 5px;
+            transition: var(--transition);
+        }
+
+        /* Hero Section */
+        .hero {
+            padding-top: 8rem;
+            background: linear-gradient(135deg, var(--lighter-gray) 0%, var(--white) 100%);
+        }
+
+        .hero .container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 3rem;
+        }
+
+        .hero-content {
+            flex: 1;
+        }
+
+        .hero-content h1 {
+            font-size: 3.5rem;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+        }
+
+        .hero-content h1 span {
+            color: var(--primary-color);
+        }
+
+        .hero-content h2 {
+            font-size: 1.5rem;
+            font-weight: 400;
+            color: var(--medium-gray);
+            margin-bottom: 2rem;
+        }
+
+        .hero-content p {
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin-bottom: 2.5rem;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .hero-image {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .hero-image .image-wrapper {
+            width: 350px;
+            height: 350px;
+            border-radius: 50%;
+            overflow: hidden;
+            border: 5px solid var(--primary-color);
+            box-shadow: var(--shadow-xl);
+        }
+
+        .hero-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+        }
+
+        /* About Section */
+        .about-content {
+            display: flex;
+            align-items: center;
+            gap: 4rem;
+        }
+
+        .about-image {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+        }
+
+        .about-image img {
+            max-width: 80%;
+            border-radius: var(--border-radius-lg);
+            box-shadow: var(--shadow-xl);
+        }
+
+        .about-text {
+            flex: 1;
+        }
+
+        .about-text p {
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+        }
+
+        .about-details {
+            display: flex;
+            gap: 1.5rem;
+            margin-top: 2.5rem;
+        }
+
+        .detail-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            padding: 1.5rem;
+            background-color: var(--white);
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow-sm);
+            transition: var(--transition);
+            flex: 1;
+        }
+
+        .detail-item:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .detail-item i {
+            font-size: 1.75rem;
+            color: var(--primary-color);
+            margin-top: 0.25rem;
+        }
+
+        .detail-item h3 {
+            margin-bottom: 0.5rem;
+            font-size: 1.25rem;
+        }
+
+        .detail-item p {
+            margin-bottom: 0;
+            font-size: 0.95rem;
+        }
+
+        /* Skills Section */
+        .skills-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .skill-category {
+            background-color: var(--white);
+            padding: 2rem;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow-sm);
+            transition: var(--transition);
+        }
+
+        .skill-category:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .skill-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .skill-header i {
+            font-size: 1.5rem;
+            color: var(--primary-color);
+        }
+
+        .skill-header h3 {
+            margin-bottom: 0;
+        }
+
+        .skill-list {
+            display: flex;
+            flex-direction: column;
+            gap: 1.25rem;
+        }
+
+        .skill-list li {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .skill-name {
+            font-weight: 500;
+            font-size: 0.95rem;
+        }
+
+        .skill-bar {
+            width: 100%;
+            height: 8px;
+            background-color: var(--light-gray);
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .skill-level {
+            height: 100%;
+            background-color: var(--primary-color);
+            border-radius: 4px;
+            transition: width 1s ease-in-out;
+        }
+
+        /* Projects Section */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+
+        .project-card {
+            background-color: var(--white);
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: var(--shadow-sm);
+            transition: var(--transition);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .project-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .project-header {
+            padding: 1.5rem;
+            border-bottom: 1px solid var(--light-gray);
+        }
+
+        .project-header h3 {
+            margin-bottom: 0.75rem;
+        }
+
+        .project-tech {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .project-tech span {
+            background-color: var(--lighter-gray);
+            color: var(--primary-color);
+            font-size: 0.75rem;
+            font-weight: 500;
+            padding: 0.25rem 0.75rem;
+            border-radius: 50px;
+            border: 1px solid var(--light-gray);
+        }
+
+        .project-description {
+            padding: 0 1.5rem 1.5rem;
+        }
+
+        .project-description p {
+            font-size: 0.95rem;
+            margin-bottom: 0;
+        }
+
+        /* Enhanced Project Gallery */
+        .project-gallery {
+            position: relative;
+            margin-top: auto;
+            overflow: hidden;
+        }
+
+        .gallery-container {
+            position: relative;
+            width: 100%;
+            height: 250px;
+            overflow: hidden;
+        }
+
+        .gallery-slide {
+            display: flex;
+            width: 100%;
+            height: 100%;
+            transition: transform 0.5s ease;
+        }
+
+        .gallery-image {
+            min-width: 100%;
+            height: 100%;
+            object-fit: cover;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .gallery-image:hover {
+            opacity: 0.9;
+        }
+
+        .gallery-nav {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 1rem;
+            pointer-events: none;
+        }
+
+        .gallery-btn {
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255, 255, 255, 0.8);
+            border: none;
+            border-radius: 50%;
+            color: var(--dark-color);
+            font-size: 1rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            pointer-events: all;
+            opacity: 0;
+            transition: var(--transition);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .project-card:hover .gallery-btn {
+            opacity: 1;
+        }
+
+        .gallery-btn:hover {
+            background-color: var(--white);
+            color: var(--primary-color);
+        }
+
+        .gallery-dots {
+            position: absolute;
+            bottom: 1rem;
+            left: 0;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            gap: 0.5rem;
+            z-index: 10;
+        }
+
+        .gallery-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.5);
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .gallery-dot.active {
+            background-color: var(--white);
+            transform: scale(1.2);
+        }
+
+        /* Lightbox Styles */
+        .lightbox {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            z-index: 2000;
+            overflow: auto;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .lightbox.show {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            opacity: 1;
+        }
+
+        .lightbox-content {
+            max-width: 90%;
+            max-height: 80vh;
+            object-fit: contain;
+            margin: auto;
+            display: block;
+            animation: zoomIn 0.3s ease;
+        }
+
+        .lightbox-caption {
+            color: var(--white);
+            text-align: center;
+            padding: 1rem;
+            max-width: 80%;
+            margin: 0 auto;
+        }
+
+        .lightbox-nav {
+            position: absolute;
+            top: 50%;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            padding: 0 2rem;
+            transform: translateY(-50%);
+            pointer-events: none;
+        }
+
+        .lightbox-nav-btn {
+            width: 50px;
+            height: 50px;
+            background-color: rgba(255, 255, 255, 0.2);
+            border: none;
+            border-radius: 50%;
+            color: var(--white);
+            font-size: 1.5rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            pointer-events: all;
+            transition: var(--transition);
+        }
+
+        .lightbox-nav-btn:hover {
+            background-color: rgba(255, 255, 255, 0.3);
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 2rem;
+            right: 2rem;
+            color: var(--white);
+            font-size: 2.5rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .close-btn:hover {
+            color: var(--primary-light);
+        }
+
+        @keyframes zoomIn {
+            from {
+                transform: scale(0.9);
+                opacity: 0;
+            }
+            to {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        /* Contact Section */
+        .contact-content {
+            display: flex;
+            gap: 4rem;
+        }
+
+        .contact-info {
+            flex: 1;
+        }
+
+        .contact-info h3 {
+            margin-bottom: 1.5rem;
+        }
+
+        .contact-info p {
+            margin-bottom: 2rem;
+            max-width: 400px;
+        }
+
+        .contact-details {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin: 2.5rem 0;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            padding: 1.5rem;
+            background-color: var(--white);
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow-sm);
+            transition: var(--transition);
+        }
+
+        .contact-item:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .contact-item i {
+            font-size: 1.25rem;
+            color: var(--primary-color);
+            margin-top: 0.25rem;
+        }
+
+        .contact-item h4 {
+            margin-bottom: 0.25rem;
+            font-size: 1rem;
+        }
+
+        .contact-item a {
+            color: var(--medium-gray);
+            font-size: 0.9rem;
+        }
+
+        .contact-item a:hover {
+            color: var(--primary-color);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .social-icon {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: var(--white);
+            color: var(--primary-color);
+            box-shadow: var(--shadow-sm);
+            transition: var(--transition);
+            font-size: 1rem;
+        }
+
+        .social-icon:hover {
+            background-color: var(--primary-color);
+            color: var(--white);
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .contact-form {
+            flex: 1;
+            background-color: var(--white);
+            padding: 2rem;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            border: 1px solid var(--light-gray);
+            border-radius: var(--border-radius);
+            font-family: inherit;
+            font-size: 1rem;
+            transition: var(--transition);
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+        }
+
+        .form-group textarea {
+            min-height: 150px;
+            resize: vertical;
+        }
+
+        /* Footer Styles */
+        footer {
+            background-color: var(--dark-color);
+            color: var(--light-gray);
+            padding: 4rem 0 0;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+
+        .footer-info .logo {
+            color: var(--white);
+            margin-bottom: 1.5rem;
+        }
+
+        .footer-info p {
+            color: var(--light-gray);
+            margin-bottom: 1.5rem;
+        }
+
+        .footer-links h4,
+        .footer-contact h4 {
+            color: var(--white);
+            margin-bottom: 1.5rem;
+            font-size: 1.25rem;
+        }
+
+        .footer-links ul,
+        .footer-contact ul {
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+
+        .footer-links a,
+        .footer-contact li {
+            color: var(--light-gray);
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .footer-links a:hover {
+            color: var(--primary-light);
+        }
+
+        .footer-contact i {
+            width: 20px;
+            text-align: center;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid var(--dark-gray);
+            padding: 1.5rem 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .back-to-top {
+            width: 40px;
+            height: 40px;
+            background-color: var(--primary-color);
+            color: var(--white);
+            border: none;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .back-to-top:hover {
+            background-color: var(--primary-light);
+            transform: translateY(-3px);
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 992px) {
+            .hero .container,
+            .about-content,
+            .contact-content {
+                flex-direction: column;
+            }
+
+            .hero-content,
+            .about-text,
+            .contact-info {
+                text-align: center;
+            }
+
+            .hero-buttons {
+                justify-content: center;
+            }
+
+            .about-details {
+                justify-content: center;
+            }
+
+            .hero-image {
+                margin-top: 3rem;
+            }
+
+            .contact-info p {
+                max-width: 100%;
+            }
+
+            .social-links {
+                justify-content: center;
+            }
+        }
+
+        @media (max-width: 768px) {
+            section {
+                padding: 4rem 0;
+            }
+
+            h1 {
+                font-size: 2.5rem;
+            }
+
+            h2 {
+                font-size: 2rem;
+            }
+
+            .nav-links {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 70%;
+                height: 100vh;
+                background-color: var(--white);
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                gap: 2rem;
+                transition: var(--transition);
+                box-shadow: var(--shadow-lg);
+            }
+
+            .nav-links.active {
+                right: 0;
+            }
+
+            .hamburger {
+                display: block;
+            }
+
+            .hamburger.active .line:nth-child(1) {
+                transform: rotate(-45deg) translate(-5px, 6px);
+            }
+
+            .hamburger.active .line:nth-child(2) {
+                opacity: 0;
+            }
+
+            .hamburger.active .line:nth-child(3) {
+                transform: rotate(45deg) translate(-5px, -6px);
+            }
+
+            .detail-item {
+                flex-direction: column;
+                text-align: center;
+                align-items: center;
+            }
+
+            .project-card {
+                max-width: 100%;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .hero-content h1 {
+                font-size: 2.25rem;
+            }
+
+            .hero-buttons {
+                flex-direction: column;
+            }
+
+            .hero-image .image-wrapper {
+                width: 280px;
+                height: 280px;
+            }
+
+            .about-details {
+                flex-direction: column;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-bottom {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .lightbox-nav-btn {
+                width: 40px;
+                height: 40px;
+                font-size: 1.2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header/Navigation -->
+    <header>
+        <div class="container">
+            <nav>
+                <div class="logo">Matee Ur Rasool<span>.</span></div>
+                <ul class="nav-links">
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#skills">Skills</a></li>
+                    <li><a href="#projects">Projects</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+                <div class="hamburger">
+                    <div class="line"></div>
+                    <div class="line"></div>
+                    <div class="line"></div>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Hi, I'm <span>Matee</span></h1>
+                <h2>Electronic Engineer & Software Developer</h2>
+                <p>Bridging hardware and software to create innovative solutions with a passion for embedded systems and full-stack development.</p>
+                <div class="hero-buttons">
+                    <a href="#projects" class="btn btn-primary">View Projects</a>
+                    <a href="#contact" class="btn btn-secondary">Contact Me</a>
+                </div>
+            </div>
+            <div class="hero-image">
+                <div class="image-wrapper">
+                    <img src="images/Me/Mk.png" alt="Matee Ur Rasool">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about">
+        <div class="container">
+            <h2 class="section-title">About Me</h2>
+            <div class="about-content">
+                <div class="about-image">
+                    <img src="images/Me/Matee.jpeg" alt="Matee Ur Rasool">
+                </div>
+                <div class="about-text">
+                    <p>I am a 5th semester B.Sc. Electronic Engineering student with a strong academic record (GPA 3.79) and over 2 years of hands-on experience in software and embedded systems development.</p>
+                    <p>My expertise spans across multiple domains including embedded systems, signal processing, and full-stack application development. I thrive on solving complex problems and creating efficient, user-friendly solutions.</p>
+                    <div class="about-details">
+                        <div class="detail-item">
+                            <i class="fas fa-graduation-cap"></i>
+                            <div>
+                                <h3>Education</h3>
+                                <p>B.Sc. Electronic Engineering</p>
+                                <p>GPA: 3.79</p>
+                            </div>
+                        </div>
+                        <div class="detail-item">
+                            <i class="fas fa-briefcase"></i>
+                            <div>
+                                <h3>Experience</h3>
+                                <p>2+ Years</p>
+                                <p>Software & Embedded Systems</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="skills">
+        <div class="container">
+            <h2 class="section-title">Technical Skills</h2>
+            <div class="skills-container">
+                <!-- Skill categories remain the same -->
+                <div class="skill-category">
+                    <div class="skill-header">
+                        <i class="fas fa-code"></i>
+                        <h3>Programming</h3>
+                    </div>
+                    <ul class="skill-list">
+                        <li>
+                            <span class="skill-name">Python</span>
+                            <div class="skill-bar">
+                                <div class="skill-level" style="width: 90%"></div>
+                            </div>
+                        </li>
+                        <li>
+                            <span class="skill-name">C++</span>
+                            <div class="skill-bar">
+                                <div class="skill-level" style="width: 85%"></div>
+                            </div>
+                        </li>
+                        <li>
+                            <span class="skill-name">Java</span>
+                            <div class="skill-bar">
+                                <div class="skill-level" style="width: 80%"></div>
+                            </div>
+                        </li>
+                        <li>
+                            <span class="skill-name">JavaScript</span>
+                            <div class="skill-bar">
+                                <div class="skill-level" style="width: 75%"></div>
+                            </div>
+                        </li>
+                        <li>
+                            <span class="skill-name">HTML/CSS</span>
+                            <div class="skill-bar">
+                                <div class="skill-level" style="width: 85%"></div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                
+                <div class="skill-category">
+                    <div class="skill-header">
+                        <i class="fas fa-tools"></i>
+                        <h3>Tools & Frameworks</h3>
+                    </div>
+                    <ul class="skill-list">
+                        <li>
+                            <span class="skill-name">Flask</span>
+                            <div class="skill-bar">
+                                <div class="skill-level" style="width: 80%"></div>
+                            </div>
+                        </li>
+                        <li>
+                            <span class="skill-name">Qt Creator</span>
+                            <div class="skill-bar">
+                                <div class="skill-level" style="width: 85%"></div>
+                            </div>
+                        </li>
+                        <li>
+                            <span class="skill-name">MATLAB</span>
+                            <div class="skill-bar">
+                                <div class="skill-level" style="width: 90%"></div>
+                            </div>
+                        </li>
+                        <li>
+                            <span class="skill-name">Git</span>
+                            <div class="skill-bar">
+                                <div class="skill-level" style="width: 80%"></div>
+                            </div>
+                        </li>
+                        <li>
+                            <span class="skill-name">VS Code</span>
+                            <div class="skill-bar">
+                                <div class="skill-level" style="width: 95%"></div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                
+                <div class="skill-category">
+                    <div class="skill-header">
+                        <i class="fas fa-microchip"></i>
+                        <h3>Embedded & Concepts</h3>
+                    </div>
+                    <ul class="skill-list">
+                        <li>
+                            <span class="skill-name">OOP</span>
+                            <div class="skill-bar">
+                                <div class="skill-level" style="width: 90%"></div>
+                            </div>
+                        </li>
+                        <li>
+                            <span class="skill-name">DSA</span>
+                            <div class="skill-bar">
+                                <div class="skill-level" style="width: 85%"></div>
+                            </div>
+                        </li>
+                        <li>
+                            <span class="skill-name">GUI Development</span>
+                            <div class="skill-bar">
+                                <div class="skill-level" style="width: 80%"></div>
+                            </div>
+                        </li>
+                        <li>
+                            <span class="skill-name">Encryption</span>
+                            <div class="skill-bar">
+                                <div class="skill-level" style="width: 75%"></div>
+                            </div>
+                        </li>
+                        <li>
+                            <span class="skill-name">ESP32/LVGL</span>
+                            <div class="skill-bar">
+                                <div class="skill-level" style="width: 70%"></div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="projects">
+        <div class="container">
+            <h2 class="section-title">Featured Projects</h2>
+            <div class="projects-grid">
+                <!-- School Management System -->
+                <div class="project-card">
+                    <div class="project-header">
+                        <h3>School Management System</h3>
+                        <div class="project-tech">
+                            <span>Python</span>
+                            <span>Qt Designer</span>
+                            <span>MySQL</span>
+                        </div>
+                    </div>
+                    <div class="project-description">
+                        <p>A comprehensive system for managing school operations including student records, fee management, payroll, and exam scheduling with admin, teacher, and student portals.</p>
+                    </div>
+                    <div class="project-gallery">
+                        <div class="gallery-container">
+                            <div class="gallery-slide">
+                                <img src="images/school-system/Dashboard.png" alt="School System Dashboard" class="gallery-image">
+                                <img src="images/school-system/Fee management.png" alt="Fee Management" class="gallery-image">
+                                <img src="images/school-system/Fee management2.png" alt="Fee Management 2" class="gallery-image">
+                                <img src="images/school-system/Teacher.png" alt="Teacher Module" class="gallery-image">
+                                <img src="images/school-system/student.png" alt="Student Module" class="gallery-image">
+                                <img src="images/school-system/exam edit.png" alt="Exam Editor" class="gallery-image">
+                                <img src="images/school-system/exam shedule.png" alt="Exam Schedule" class="gallery-image">
+                                <img src="images/school-system/fee management payment history.png" alt="Payment History" class="gallery-image">
+                                <img src="images/school-system/file.png" alt="File Upload" class="gallery-image">
+                                <img src="images/school-system/Login.png" alt="Login Screen" class="gallery-image">
+                                <img src="images/school-system/payroll.png" alt="Payroll Management" class="gallery-image">
+                                <img src="images/school-system/file.png" alt="Payment Records" class="gallery-image">
+                                <img src="images/school-system/Signup.png" alt="Signup Screen" class="gallery-image">
+                            </div>
+                        </div>
+                        <div class="gallery-nav">
+                            <button class="gallery-btn prev-btn"><i class="fas fa-chevron-left"></i></button>
+                            <button class="gallery-btn next-btn"><i class="fas fa-chevron-right"></i></button>
+                        </div>
+                        <div class="gallery-dots"></div>
+                    </div>
+                </div>
+
+                <!-- Signal Analyzer App -->
+                <div class="project-card">
+                    <div class="project-header">
+                        <h3>Signal Analyzer App</h3>
+                        <div class="project-tech">
+                            <span>Python</span>
+                            <span>MATLAB</span>
+                            <span>DSP</span>
+                        </div>
+                    </div>
+                    <div class="project-description">
+                        <p>An advanced application for analyzing and visualizing various signal patterns with filtering, measurement capabilities, and spectral analysis features.</p>
+                    </div>
+                    <div class="project-gallery">
+                        <div class="gallery-container">
+                            <div class="gallery-slide">
+                                <img src="images/signal-analyser-app/one.png" alt="Signal Analyzer Main View" class="gallery-image">
+                                <img src="images/signal-analyser-app/two.png" alt="Signal Processing" class="gallery-image">
+                                <img src="images/signal-analyser-app/three.png" alt="Spectral Analysis" class="gallery-image">
+                                <img src="images/signal-analyser-app/four.png" alt="Filter Settings" class="gallery-image">
+                                <img src="images/signal-analyser-app/five.png" alt="Measurement Tools" class="gallery-image">
+                                <img src="images/signal-analyser-app/sex.png" alt="Advanced Features" class="gallery-image">
+                            </div>
+                        </div>
+                        <div class="gallery-nav">
+                            <button class="gallery-btn prev-btn"><i class="fas fa-chevron-left"></i></button>
+                            <button class="gallery-btn next-btn"><i class="fas fa-chevron-right"></i></button>
+                        </div>
+                        <div class="gallery-dots"></div>
+                    </div>
+                </div>
+
+                <!-- Voice Assistant -->
+                <div class="project-card">
+                    <div class="project-header">
+                        <h3>Voice Assistant</h3>
+                        <div class="project-tech">
+                            <span>Python</span>
+                            <span>Speech Recognition</span>
+                            <span>GUI</span>
+                        </div>
+                    </div>
+                    <div class="project-description">
+                        <p>A personal voice-controlled assistant with natural language processing, reminder functionality, task management, and web integration features.</p>
+                    </div>
+                    <div class="project-gallery">
+                        <div class="gallery-container">
+                            <div class="gallery-slide">
+                                <img src="images/voice-assistant/dashboard.png" alt="Voice Assistant Dashboard" class="gallery-image">
+                                <img src="images/voice-assistant/set reminder.png" alt="Reminder Setting" class="gallery-image">
+                                <img src="images/voice-assistant/at reminder time.png" alt="Reminder Notification" class="gallery-image">
+                                <img src="images/voice-assistant/view reminder.png" alt="Reminder View" class="gallery-image">
+                                <img src="images/voice-assistant/all things.png" alt="Feature Overview" class="gallery-image">
+                            </div>
+                        </div>
+                        <div class="gallery-nav">
+                            <button class="gallery-btn prev-btn"><i class="fas fa-chevron-left"></i></button>
+                            <button class="gallery-btn next-btn"><i class="fas fa-chevron-right"></i></button>
+                        </div>
+                        <div class="gallery-dots"></div>
+                    </div>
+                </div>
+
+                <!-- To-Do App -->
+                <div class="project-card">
+                    <div class="project-header">
+                        <h3>To-Do Application</h3>
+                        <div class="project-tech">
+                            <span>Python</span>
+                            <span>Flask</span>
+                            <span>SQLite</span>
+                        </div>
+                    </div>
+                    <div class="project-description">
+                        <p>A productivity application with user authentication, task categorization, reminder system, and progress tracking with a clean, intuitive interface.</p>
+                    </div>
+                    <div class="project-gallery">
+                        <div class="gallery-container">
+                            <div class="gallery-slide">
+                                <img src="images/todo-app/login page.png" alt="To-Do Login" class="gallery-image">
+                                <img src="images/todo-app/set reminder.png" alt="Set Reminder" class="gallery-image">
+                                <img src="images/todo-app/view reminder.png" alt="View Reminders" class="gallery-image">
+                            </div>
+                        </div>
+                        <div class="gallery-nav">
+                            <button class="gallery-btn prev-btn"><i class="fas fa-chevron-left"></i></button>
+                            <button class="gallery-btn next-btn"><i class="fas fa-chevron-right"></i></button>
+                        </div>
+                        <div class="gallery-dots"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <h2 class="section-title">Get In Touch</h2>
+            <div class="contact-content">
+                <div class="contact-info">
+                    <h3>Contact Information</h3>
+                    <p>Feel free to reach out for collaborations or just to say hello!</p>
+                    <div class="contact-details">
+                        <div class="contact-item">
+                            <i class="fas fa-envelope"></i>
+                            <div>
+                                <h4>Email</h4>
+                                <a href="mailto:engrmateeurrasool@gmail.com">engrmateeurrasool@gmail.com</a>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fab fa-linkedin"></i>
+                            <div>
+                                <h4>LinkedIn</h4>
+                                <a href="https://www.linkedin.com/in/mate-ur-rasool-meladi-b96390365" target="_blank">Matee Ur Rasool</a>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fab fa-whatsapp"></i>
+                            <div>
+                                <h4>WhatsApp</h4>
+                                <a href="https://wa.me/923464055515" target="_blank">+92 346 4055515</a>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fab fa-facebook"></i>
+                            <div>
+                                <h4>Facebook</h4>
+                                <a href="https://www.facebook.com/share/1M3S7iS2rq/" target="_blank">Matee Ur Rasool</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="social-links">
+                        <a href="https://www.linkedin.com/in/mate-ur-rasool-meladi-b96390365" target="_blank" class="social-icon" aria-label="LinkedIn">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                        <a href="mailto:engrmateeurrasool@gmail.com" class="social-icon" aria-label="Email">
+                            <i class="fas fa-envelope"></i>
+                        </a>
+                        <a href="https://github.com/" target="_blank" class="social-icon" aria-label="GitHub">
+                            <i class="fab fa-github"></i>
+                        </a>
+                        <a href="https://wa.me/923464055515" target="_blank" class="social-icon" aria-label="WhatsApp">
+                            <i class="fab fa-whatsapp"></i>
+                        </a>
+                    </div>
+                </div>
+                <form class="contact-form">
+                    <div class="form-group">
+                        <input type="text" placeholder="Your Name" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="email" placeholder="Your Email" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" placeholder="Subject">
+                    </div>
+                    <div class="form-group">
+                        <textarea placeholder="Your Message" required></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Send Message</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Lightbox Modal -->
+    <div class="lightbox">
+        <span class="close-btn">&times;</span>
+        <div class="lightbox-nav">
+            <button class="lightbox-nav-btn prev-lightbox-btn"><i class="fas fa-chevron-left"></i></button>
+            <button class="lightbox-nav-btn next-lightbox-btn"><i class="fas fa-chevron-right"></i></button>
+        </div>
+        <img class="lightbox-content" id="lightbox-img">
+        <div class="lightbox-caption"></div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-info">
+                    <div class="logo">Matee<span>.</span></div>
+                    <p>Electronic Engineer & Software Developer creating innovative solutions at the intersection of hardware and software.</p>
+                </div>
+                <div class="footer-links">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#about">About</a></li>
+                        <li><a href="#skills">Skills</a></li>
+                        <li><a href="#projects">Projects</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-contact">
+                    <h4>Contact</h4>
+                    <ul>
+                        <li><i class="fas fa-envelope"></i> engrmateeurrasool@gmail.com</li>
+                        <li><i class="fab fa-whatsapp"></i> +92 346 4055515</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; <span id="current-year"></span> Matee Ur Rasool. All rights reserved.</p>
+                <button id="back-to-top" class="back-to-top">
+                    <i class="fas fa-arrow-up"></i>
+                </button>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Mobile Navigation
+            const hamburger = document.querySelector('.hamburger');
+            const navLinks = document.querySelector('.nav-links');
+            const navLinksItems = document.querySelectorAll('.nav-links li');
+            
+            hamburger.addEventListener('click', function() {
+                this.classList.toggle('active');
+                navLinks.classList.toggle('active');
+            });
+            
+            // Close mobile menu when clicking a link
+            navLinksItems.forEach(item => {
+                item.addEventListener('click', () => {
+                    hamburger.classList.remove('active');
+                    navLinks.classList.remove('active');
+                });
+            });
+            
+            // Sticky Header
+            window.addEventListener('scroll', function() {
+                const header = document.querySelector('header');
+                header.classList.toggle('scrolled', window.scrollY > 50);
+            });
+            
+            // Smooth scrolling for all links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    const targetId = this.getAttribute('href');
+                    const targetElement = document.querySelector(targetId);
+                    
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                });
+            });
+            
+            // Back to Top Button
+            const backToTopBtn = document.getElementById('back-to-top');
+            window.addEventListener('scroll', function() {
+                if (window.pageYOffset > 300) {
+                    backToTopBtn.style.display = 'flex';
+                } else {
+                    backToTopBtn.style.display = 'none';
+                }
+            });
+            
+            backToTopBtn.addEventListener('click', function() {
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            });
+            
+            // Update copyright year
+            document.getElementById('current-year').textContent = new Date().getFullYear();
+            
+            // Form submission
+            const contactForm = document.querySelector('.contact-form');
+            if (contactForm) {
+                contactForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    alert('Thank you for your message! I will get back to you soon.');
+                    this.reset();
+                });
+            }
+            
+            // Project Galleries
+            const projectGalleries = document.querySelectorAll('.project-gallery');
+            
+            projectGalleries.forEach(gallery => {
+                const container = gallery.querySelector('.gallery-container');
+                const slide = gallery.querySelector('.gallery-slide');
+                const images = gallery.querySelectorAll('.gallery-image');
+                const prevBtn = gallery.querySelector('.prev-btn');
+                const nextBtn = gallery.querySelector('.next-btn');
+                const dotsContainer = gallery.querySelector('.gallery-dots');
+                
+                let currentIndex = 0;
+                const imageCount = images.length;
+                const imageWidth = 100; // Percentage
+                
+                // Create dots
+                images.forEach((_, index) => {
+                    const dot = document.createElement('div');
+                    dot.classList.add('gallery-dot');
+                    if (index === 0) dot.classList.add('active');
+                    dot.addEventListener('click', () => {
+                        goToSlide(index);
+                    });
+                    dotsContainer.appendChild(dot);
+                });
+                
+                // Update dots
+                function updateDots() {
+                    const dots = dotsContainer.querySelectorAll('.gallery-dot');
+                    dots.forEach((dot, index) => {
+                        if (index === currentIndex) {
+                            dot.classList.add('active');
+                        } else {
+                            dot.classList.remove('active');
+                        }
+                    });
+                }
+                
+                // Go to specific slide
+                function goToSlide(index) {
+                    currentIndex = index;
+                    slide.style.transform = `translateX(-${currentIndex * imageWidth}%)`;
+                    updateDots();
+                }
+                
+                // Next image
+                function nextImage() {
+                    currentIndex = (currentIndex + 1) % imageCount;
+                    slide.style.transform = `translateX(-${currentIndex * imageWidth}%)`;
+                    updateDots();
+                }
+                
+                // Previous image
+                function prevImage() {
+                    currentIndex = (currentIndex - 1 + imageCount) % imageCount;
+                    slide.style.transform = `translateX(-${currentIndex * imageWidth}%)`;
+                    updateDots();
+                }
+                
+                // Button events
+                nextBtn.addEventListener('click', nextImage);
+                prevBtn.addEventListener('click', prevImage);
+                
+                // Keyboard navigation
+                document.addEventListener('keydown', function(e) {
+                    if (e.key === 'ArrowRight') {
+                        nextImage();
+                    } else if (e.key === 'ArrowLeft') {
+                        prevImage();
+                    }
+                });
+                
+                // Initialize
+                updateDots();
+            });
+            
+            // Lightbox functionality
+            const lightbox = document.querySelector('.lightbox');
+            const lightboxImg = document.querySelector('.lightbox-content');
+            const lightboxCaption = document.querySelector('.lightbox-caption');
+            const closeBtn = document.querySelector('.close-btn');
+            const prevLightboxBtn = document.querySelector('.prev-lightbox-btn');
+            const nextLightboxBtn = document.querySelector('.next-lightbox-btn');
+            const projectImages = document.querySelectorAll('.gallery-image');
+            
+            let currentLightboxIndex = 0;
+            let currentGalleryImages = [];
+            let currentGallery = null;
+            
+            // Open lightbox
+            projectImages.forEach((image, index) => {
+                image.addEventListener('click', function() {
+                    lightbox.classList.add('show');
+                    lightboxImg.src = this.src;
+                    lightboxCaption.textContent = this.alt;
+                    document.body.style.overflow = 'hidden';
+                    
+                    // Get all images from the current gallery
+                    currentGallery = this.closest('.project-gallery');
+                    currentGalleryImages = Array.from(currentGallery.querySelectorAll('.gallery-image'));
+                    currentLightboxIndex = currentGalleryImages.indexOf(this);
+                });
+            });
+            
+            // Close lightbox
+            closeBtn.addEventListener('click', function() {
+                lightbox.classList.remove('show');
+                document.body.style.overflow = 'auto';
+            });
+            
+            // Close when clicking outside image
+            lightbox.addEventListener('click', function(e) {
+                if (e.target === lightbox) {
+                    lightbox.classList.remove('show');
+                    document.body.style.overflow = 'auto';
+                }
+            });
+            
+            // Lightbox navigation
+            function showLightboxImage(index) {
+                if (index >= 0 && index < currentGalleryImages.length) {
+                    currentLightboxIndex = index;
+                    lightboxImg.src = currentGalleryImages[index].src;
+                    lightboxCaption.textContent = currentGalleryImages[index].alt;
+                }
+            }
+            
+            prevLightboxBtn.addEventListener('click', function(e) {
+                e.stopPropagation();
+                showLightboxImage((currentLightboxIndex - 1 + currentGalleryImages.length) % currentGalleryImages.length);
+            });
+            
+            nextLightboxBtn.addEventListener('click', function(e) {
+                e.stopPropagation();
+                showLightboxImage((currentLightboxIndex + 1) % currentGalleryImages.length);
+            });
+            
+            // Keyboard navigation in lightbox
+            document.addEventListener('keydown', function(e) {
+                if (lightbox.classList.contains('show')) {
+                    if (e.key === 'ArrowRight') {
+                        showLightboxImage((currentLightboxIndex + 1) % currentGalleryImages.length);
+                    } else if (e.key === 'ArrowLeft') {
+                        showLightboxImage((currentLightboxIndex - 1 + currentGalleryImages.length) % currentGalleryImages.length);
+                    } else if (e.key === 'Escape') {
+                        lightbox.classList.remove('show');
+                        document.body.style.overflow = 'auto';
+                    }
+                }
+            });
+            
+            // Animation on scroll
+            const animateOnScroll = function() {
+                const elements = document.querySelectorAll('.project-card, .detail-item, .skill-category, .contact-item');
+                
+                elements.forEach(element => {
+                    const elementPosition = element.getBoundingClientRect().top;
+                    const screenPosition = window.innerHeight / 1.2;
+                    
+                    if (elementPosition < screenPosition) {
+                        element.style.opacity = '1';
+                        element.style.transform = 'translateY(0)';
+                    }
+                });
+            };
+            
+            // Set initial state for animated elements
+            document.querySelectorAll('.project-card, .detail-item, .skill-category, .contact-item').forEach(element => {
+                element.style.opacity = '0';
+                element.style.transform = 'translateY(20px)';
+                element.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+            });
+            
+            window.addEventListener('scroll', animateOnScroll);
+            // Trigger once on page load
+            animateOnScroll();
+        });
+    </script>
+</body>
+</html>
