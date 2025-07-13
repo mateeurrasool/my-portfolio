@@ -1,8 +1,5 @@
-<!-- Force rebuild -->
 <!DOCTYPE html>
 <html lang="en">
-    <!-- Just a rebuild trigger -->
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,7 +8,7 @@
     <meta name="description" content="Portfolio of Matee Ur Rasool - Electronic & Software Engineer. Projects, skills, and contact.">
     <meta name="keywords" content="Matee Ur Rasool, Engr Matee, Engineer Portfolio, Software Developer, ESP32, Python, C++, Matee Website">
     <meta name="author" content="Matee Ur Rasool">
-    <link rel="icon" type="image/png" href="favicon2.png">
+    <link rel="icon" type="image/png" href="favicon.png">
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -170,7 +167,7 @@
             border-radius: 2px;
         }
 
-        /* Header Styles */
+        /* Header Styles - Modified padding values */
         header {
             position: fixed;
             top: 0;
@@ -185,19 +182,19 @@
         header.scrolled {
             background-color: rgba(255, 255, 255, 0.98);
             box-shadow: var(--shadow-md);
-            padding: 0.5rem 0;
+            padding: 0.25rem 0; /* Reduced from 0.5rem */
         }
 
         nav {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 1.5rem 0;
+            padding: 0.75rem 0; /* Reduced from 1.5rem */
             transition: var(--transition);
         }
 
         .logo {
-            font-size: 1.75rem;
+            font-size: 1.5rem; /* Slightly reduced from 1.75rem */
             font-weight: 700;
             color: var(--primary-color);
         }
@@ -216,6 +213,7 @@
             font-weight: 500;
             position: relative;
             color: var(--dark-gray);
+            font-size: 0.95rem; /* Slightly reduced font size */
         }
 
         .nav-links a::after {
@@ -247,16 +245,17 @@
             width: 25px;
             height: 3px;
             background-color: var(--dark-color);
-            margin: 5px;
+            margin: 4px 5px; /* Adjusted margin */
             transition: var(--transition);
         }
 
-        /* Hero Section */
+        /* Hero Section - Adjusted padding to account for smaller header */
         .hero {
-            padding-top: 8rem;
+            padding-top: 6rem; /* Reduced from 8rem */
             background: linear-gradient(135deg, var(--lighter-gray) 0%, var(--white) 100%);
         }
 
+        /* Rest of your existing CSS remains the same */
         .hero .container {
             display: flex;
             align-items: center;
