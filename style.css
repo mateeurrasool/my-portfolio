@@ -261,6 +261,24 @@ ul {
         blink-caret 0.75s step-end infinite;
 }
 
+/* Mobile Typing Animation Fix */
+@media (max-width: 768px) {
+    .typing-animation {
+        white-space: normal;
+        border-right: none;
+        animation: none;
+        text-align: center;
+    }
+    
+    .hero-content {
+        text-align: center;
+    }
+    
+    .hero-buttons {
+        justify-content: center;
+    }
+}
+
 .animated-gradient {
     background: linear-gradient(-45deg, var(--primary-color), var(--secondary-color), var(--accent-color), var(--primary-light));
     background-size: 400% 400%;
