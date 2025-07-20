@@ -1,4 +1,111 @@
 document.addEventListener('DOMContentLoaded', function() {
+    // Initialize particles.js
+    particlesJS("particles-js", {
+        "particles": {
+            "number": {
+                "value": 80,
+                "density": {
+                    "enable": true,
+                    "value_area": 800
+                }
+            },
+            "color": {
+                "value": "#4f46e5"
+            },
+            "shape": {
+                "type": "circle",
+                "stroke": {
+                    "width": 0,
+                    "color": "#000000"
+                },
+                "polygon": {
+                    "nb_sides": 5
+                }
+            },
+            "opacity": {
+                "value": 0.5,
+                "random": false,
+                "anim": {
+                    "enable": false,
+                    "speed": 1,
+                    "opacity_min": 0.1,
+                    "sync": false
+                }
+            },
+            "size": {
+                "value": 3,
+                "random": true,
+                "anim": {
+                    "enable": false,
+                    "speed": 40,
+                    "size_min": 0.1,
+                    "sync": false
+                }
+            },
+            "line_linked": {
+                "enable": true,
+                "distance": 150,
+                "color": "#4f46e5",
+                "opacity": 0.2,
+                "width": 1
+            },
+            "move": {
+                "enable": true,
+                "speed": 2,
+                "direction": "none",
+                "random": false,
+                "straight": false,
+                "out_mode": "out",
+                "bounce": false,
+                "attract": {
+                    "enable": false,
+                    "rotateX": 600,
+                    "rotateY": 1200
+                }
+            }
+        },
+        "interactivity": {
+            "detect_on": "canvas",
+            "events": {
+                "onhover": {
+                    "enable": true,
+                    "mode": "grab"
+                },
+                "onclick": {
+                    "enable": true,
+                    "mode": "push"
+                },
+                "resize": true
+            },
+            "modes": {
+                "grab": {
+                    "distance": 140,
+                    "line_linked": {
+                        "opacity": 1
+                    }
+                },
+                "bubble": {
+                    "distance": 400,
+                    "size": 40,
+                    "duration": 2,
+                    "opacity": 8,
+                    "speed": 3
+                },
+                "repulse": {
+                    "distance": 200,
+                    "duration": 0.4
+                },
+                "push": {
+                    "particles_nb": 4
+                },
+                "remove": {
+                    "particles_nb": 2
+                }
+            }
+        },
+        "retina_detect": true
+    });
+
     // Mobile Navigation
     const hamburger = document.querySelector('.hamburger');
     const navLinks = document.querySelector('.nav-links');
@@ -38,6 +145,34 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
     
+    // Update active nav link on scroll
+    const sections = document.querySelectorAll('section');
+    const navItems = document.querySelectorAll('.nav-links a');
+    
+    function updateActiveNavItem() {
+        let current = '';
+        
+        sections.forEach(section => {
+            const sectionTop = section.offsetTop;
+            const sectionHeight = section.clientHeight;
+            
+            if (pageYOffset >= (sectionTop - 150)) {
+                current = section.getAttribute('id');
+            }
+        });
+        
+        navItems.forEach(item => {
+            item.classList.remove('active');
+            if (item.getAttribute('href') === `#${current}`) {
+                item.classList.add('active');
+            }
+        });
+    }
+    
+    window.addEventListener('scroll', updateActiveNavItem);
+    // Initialize active nav item on page load
+    updateActiveNavItem();
+    
     // Back to Top Button
     const backToTopBtn = document.getElementById('back-to-top');
     window.addEventListener('scroll', function() {
@@ -58,45 +193,93 @@ document.addEventListener('DOMContentLoaded', function() {
     // Update copyright year
     document.getElementById('current-year').textContent = new Date().getFullYear();
     
-    // Form submission
-    const contactForm = document.querySelector('.contact-form');
+    // Form submission with Formspree
+    const contactForm = document.getElementById('contact-form');
     if (contactForm) {
         contactForm.addEventListener('submit', function(e) {
             e.preventDefault();
-            alert('Thank you for your message! I will get back to you soon.');
-            this.reset();
+            
+            // Submit the form data to Formspree
+            fetch(this.action, {
+                method: this.method,
+                body: new FormData(this),
+                headers: {
+                    'Accept': 'application/json'
+                }
+            })
+            .then(response => {
+                if (response.ok) {
+                    // Show success message
+                    alert('Thank you for your message! I will get back to you soon on Email.');
+                    this.reset();
+                } else {
+                    throw new Error('Network response was not ok');
+                }
+            })
+            .catch(error => {
+                alert('There was a problem sending your message. Please try again later.');
+                console.error('Error:', error);
+            });
         });
     }
     
-    // Project Carousels
-    const projectCarousels = document.querySelectorAll('.project-carousel');
+    // Project Galleries
+    const projectGalleries = document.querySelectorAll('.project-gallery');
     
-    projectCarousels.forEach(carousel => {
-        const container = carousel.querySelector('.carousel-container');
-        const slide = carousel.querySelector('.carousel-slide');
-        const images = carousel.querySelectorAll('.project-image');
-        const prevBtn = carousel.querySelector('.prev-btn');
-        const nextBtn = carousel.querySelector('.next-btn');
+    projectGalleries.forEach(gallery => {
+        const container = gallery.querySelector('.gallery-container');
+        const slide = gallery.querySelector('.gallery-slide');
+        const images = gallery.querySelectorAll('.gallery-image');
+        const prevBtn = gallery.querySelector('.prev-btn');
+        const nextBtn = gallery.querySelector('.next-btn');
+        const dotsContainer = gallery.querySelector('.gallery-dots');
         
         let currentIndex = 0;
         const imageCount = images.length;
         const imageWidth = 100; // Percentage
         
-        // Initialize carousel
-        function updateCarousel() {
+        // Create dots
+        images.forEach((_, index) => {
+            const dot = document.createElement('div');
+            dot.classList.add('gallery-dot');
+            if (index === 0) dot.classList.add('active');
+            dot.addEventListener('click', () => {
+                goToSlide(index);
+            });
+            dotsContainer.appendChild(dot);
+        });
+        
+        // Update dots
+        function updateDots() {
+            const dots = dotsContainer.querySelectorAll('.gallery-dot');
+            dots.forEach((dot, index) => {
+                if (index === currentIndex) {
+                    dot.classList.add('active');
+                } else {
+                    dot.classList.remove('active');
+                }
+            });
+        }
+        
+        // Go to specific slide
+        function goToSlide(index) {
+            currentIndex = index;
             slide.style.transform = `translateX(-${currentIndex * imageWidth}%)`;
+            updateDots();
         }
         
         // Next image
         function nextImage() {
             currentIndex = (currentIndex + 1) % imageCount;
-            updateCarousel();
+            slide.style.transform = `translateX(-${currentIndex * imageWidth}%)`;
+            updateDots();
         }
         
         // Previous image
         function prevImage() {
             currentIndex = (currentIndex - 1 + imageCount) % imageCount;
-            updateCarousel();
+            slide.style.transform = `translateX(-${currentIndex * imageWidth}%)`;
+            updateDots();
         }
         
         // Button events
@@ -105,15 +288,17 @@ document.addEventListener('DOMContentLoaded', function() {
         
         // Keyboard navigation
         document.addEventListener('keydown', function(e) {
-            if (e.key === 'ArrowRight') {
-                nextImage();
-            } else if (e.key === 'ArrowLeft') {
-                prevImage();
+            if (e.target.tagName !== 'INPUT' && e.target.tagName !== 'TEXTAREA') {
+                if (e.key === 'ArrowRight') {
+                    nextImage();
+                } else if (e.key === 'ArrowLeft') {
+                    prevImage();
+                }
             }
         });
         
         // Initialize
-        updateCarousel();
+        updateDots();
     });
     
     // Lightbox functionality
@@ -121,15 +306,26 @@ document.addEventListener('DOMContentLoaded', function() {
     const lightboxImg = document.querySelector('.lightbox-content');
     const lightboxCaption = document.querySelector('.lightbox-caption');
     const closeBtn = document.querySelector('.close-btn');
-    const projectImages = document.querySelectorAll('.project-image');
+    const prevLightboxBtn = document.querySelector('.prev-lightbox-btn');
+    const nextLightboxBtn = document.querySelector('.next-lightbox-btn');
+    const projectImages = document.querySelectorAll('.gallery-image');
+    
+    let currentLightboxIndex = 0;
+    let currentGalleryImages = [];
+    let currentGallery = null;
     
     // Open lightbox
-    projectImages.forEach(image => {
+    projectImages.forEach((image, index) => {
         image.addEventListener('click', function() {
             lightbox.classList.add('show');
             lightboxImg.src = this.src;
             lightboxCaption.textContent = this.alt;
             document.body.style.overflow = 'hidden';
+            
+            // Get all images from the current gallery
+            currentGallery = this.closest('.project-gallery');
+            currentGalleryImages = Array.from(currentGallery.querySelectorAll('.gallery-image'));
+            currentLightboxIndex = currentGalleryImages.indexOf(this);
         });
     });
     
@@ -147,9 +343,42 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
     
+    // Lightbox navigation
+    function showLightboxImage(index) {
+        if (index >= 0 && index < currentGalleryImages.length) {
+            currentLightboxIndex = index;
+            lightboxImg.src = currentGalleryImages[index].src;
+            lightboxCaption.textContent = currentGalleryImages[index].alt;
+        }
+    }
+    
+    prevLightboxBtn.addEventListener('click', function(e) {
+        e.stopPropagation();
+        showLightboxImage((currentLightboxIndex - 1 + currentGalleryImages.length) % currentGalleryImages.length);
+    });
+    
+    nextLightboxBtn.addEventListener('click', function(e) {
+        e.stopPropagation();
+        showLightboxImage((currentLightboxIndex + 1) % currentGalleryImages.length);
+    });
+    
+    // Keyboard navigation in lightbox
+    document.addEventListener('keydown', function(e) {
+        if (lightbox.classList.contains('show')) {
+            if (e.key === 'ArrowRight') {
+                showLightboxImage((currentLightboxIndex + 1) % currentGalleryImages.length);
+            } else if (e.key === 'ArrowLeft') {
+                showLightboxImage((currentLightboxIndex - 1 + currentGalleryImages.length) % currentGalleryImages.length);
+            } else if (e.key === 'Escape') {
+                lightbox.classList.remove('show');
+                document.body.style.overflow = 'auto';
+            }
+        }
+    });
+    
     // Animation on scroll
     const animateOnScroll = function() {
-        const elements = document.querySelectorAll('.project-card, .detail-item, .skill-category, .contact-item');
+        const elements = document.querySelectorAll('.project-card, .detail-item, .skill-category, .contact-item, .service-card');
         
         elements.forEach(element => {
             const elementPosition = element.getBoundingClientRect().top;
@@ -163,7 +392,7 @@ document.addEventListener('DOMContentLoaded', function() {
     };
     
     // Set initial state for animated elements
-    document.querySelectorAll('.project-card, .detail-item, .skill-category, .contact-item').forEach(element => {
+    document.querySelectorAll('.project-card, .detail-item, .skill-category, .contact-item, .service-card').forEach(element => {
         element.style.opacity = '0';
         element.style.transform = 'translateY(20px)';
         element.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
@@ -172,4 +401,23 @@ document.addEventListener('DOMContentLoaded', function() {
     window.addEventListener('scroll', animateOnScroll);
     // Trigger once on page load
     animateOnScroll();
+    
+    // Add ripple effect to buttons
+    document.querySelectorAll('.btn').forEach(button => {
+        button.addEventListener('click', function(e) {
+            const x = e.clientX - e.target.getBoundingClientRect().left;
+            const y = e.clientY - e.target.getBoundingClientRect().top;
+            
+            const ripple = document.createElement('span');
+            ripple.classList.add('ripple');
+            ripple.style.left = `${x}px`;
+            ripple.style.top = `${y}px`;
+            
+            this.appendChild(ripple);
+            
+            setTimeout(() => {
+                ripple.remove();
+            }, 1000);
+        });
+    });
 });
